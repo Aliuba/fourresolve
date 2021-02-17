@@ -18,7 +18,7 @@ const  routes: Routes = [
   {path: 'users', component: UsersComponent, resolve: {usersData: UserResolveService},
   children: [ {path: ':id', component: FulluserComponent, children: [ {path: 'posts', component: UserPostsComponent}]}]},
   {path: 'posts', component: PostsComponent, resolve: {postsData: PostResolveService},
-  children: [{path: ':id', component: PostsComponent}]},
+  children: [{path: ':id', component: FullPostComponent}]},
 ];
 @NgModule({
   declarations: [
