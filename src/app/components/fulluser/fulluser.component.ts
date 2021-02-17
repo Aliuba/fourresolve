@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../models/user';
-import {PostService} from "../../services/post.service";
+import {PostService} from '../../services/post.service';
+import {Post} from '../../models/post';
 
 @Component({
   selector: 'app-fulluser',
@@ -10,6 +11,7 @@ import {PostService} from "../../services/post.service";
 })
 export class FulluserComponent implements OnInit {
   user: User;
+  post: Post;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private postService: PostService) {
     this.activatedRoute.params.subscribe(value => this.user = this.router.getCurrentNavigation().extras.state as User);
@@ -18,8 +20,9 @@ export class FulluserComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  getPostsOfThisUser(userId): void{
-    this.postService.getPostsByUserId(userId).subscribe(value => console.log(value));
+
+  getPostsOfThisUser(): void {
+    this.router.navigate(['posts'], {relativeTo: this.activatedRoute, state: this.user});
   }
 
 }

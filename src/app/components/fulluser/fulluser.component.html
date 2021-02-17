@@ -1,6 +1,7 @@
 <p>fulluser works!</p>
 <p>{{user?.id}}.{{user?.address.geo.lat}}
 
-<button *ngIf="user"  (click)="getPostsOfThisUser(user.id)">get Post of this User</button>
+<button *ngIf="user"  (click)="getPostsOfThisUser()">get Post of this User</button>
 </p>
 
+<router-outlet></router-outlet>

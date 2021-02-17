@@ -12,12 +12,13 @@ import {UserResolveService} from './services/user-resolve.service';
 import { FulluserComponent } from './components/fulluser/fulluser.component';
 import {PostResolveService} from './services/post-resolve.service';
 import { FullPostComponent } from './components/full-post/full-post.component';
+import { UserPostsComponent } from './components/user-posts/user-posts.component';
 
 const  routes: Routes = [
   {path: 'users', component: UsersComponent, resolve: {usersData: UserResolveService},
-  children: [ {path: ':id', component: FulluserComponent}]},
+  children: [ {path: ':id', component: FulluserComponent, children: [ {path: 'posts', component: UserPostsComponent}]}]},
   {path: 'posts', component: PostsComponent, resolve: {postsData: PostResolveService},
-  children: [{path: ':id', component: FullPostComponent}]},
+  children: [{path: ':id', component: PostsComponent}]},
 ];
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ const  routes: Routes = [
     UserComponent,
     PostComponent,
     FulluserComponent,
-    FullPostComponent
+    FullPostComponent,
+    UserPostsComponent
   ],
   imports: [
     BrowserModule,
